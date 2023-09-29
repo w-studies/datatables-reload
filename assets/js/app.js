@@ -93,6 +93,13 @@ jQuery(function () {
     form.find('input').eq(0)[0].focus()
   })
 
+  // quando a modal fechar
+  Modal._element.addEventListener('hidden.bs.modal', () => {
+    // reset na validação
+    form.find('.is-invalid').removeClass('is-invalid')
+    modalFormValidation.resetForm()
+  })
+
   /**
    * MODAL FORM SUBMIT
    */
@@ -117,7 +124,7 @@ jQuery(function () {
           // atualiza a tabela
           dataTables.ajax.reload(null, false)
           form[0].reset()
-          Modal.hide()
+          // Modal.hide()
         } else {
           // desabilita a revalidação quando houver focusout
           modalFormValidation.settings.onfocusout = false
