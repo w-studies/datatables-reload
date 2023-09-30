@@ -144,7 +144,7 @@ jQuery(function () {
     // busca no database o item com essa id
     form.attr('data-id', id)
     // busca os dados do item com essa id
-    const response = await fetch(`items/index.php?id=${id}`).then(response => response.json())
+    const response = await fetch(`api/items/${id}`).then(response => response.json())
 
     form.find('input').val(response.data[0][1])
     Modal.show()

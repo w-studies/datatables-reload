@@ -17,7 +17,7 @@
     <button type="button" class="btn btn-primary mb-4" rel='modal-open'>
       New Item
     </button>
-    <table id="table-data" class="table table-striped table-hover" data-href="items">
+    <table id="table-data" class="table table-striped table-hover" data-href="api/items/">
       <thead>
         <tr>
           <th>id</th>
@@ -37,7 +37,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="items/save.php" method='post' id='formItems'>
+          <form action="api/items/save" method='post' id='formItems'>
             <div class="row">
               <div class="col-12">
                 <label for="">Item name</label>

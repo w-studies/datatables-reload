@@ -1,0 +1,29 @@
+# Disable directory browsing
+Options All -Indexes
+
+# Turning on the rewrite engine is necessary for the following rules and features.
+<IfModule mod_rewrite.c>
+	Options +FollowSymlinks
+	RewriteEngine On
+
+  # Rewrite "www.example.com -> example.com"
+	RewriteCond %{HTTPS} !=on
+	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+	RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+
+  # redirects anything start with api/ to api.php
+  RewriteRule ^api/(.*)$ api.php/$1 [L]
+
+	# Ensure Authorization header is passed along
+	RewriteCond %{HTTP:Authorization} .
+	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+
+	# If we don't have mod_rewrite installed, all 404's
+<IfModule !mod_rewrite.c>
+	# can show error
+	ErrorDocument 404 mod_rewrite-error.php
+</IfModule>
+
+# Disable server signature start
+	ServerSignature Off
